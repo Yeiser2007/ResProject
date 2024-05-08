@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rowdies:wght@300;400;700&display=swap');
+*{
+    color: #fff;
+    list-style: none;
+}
+body{
+    background: rgb(5,19,94);
+    background: radial-gradient(circle, rgba(5,19,94,1) 0%, rgba(2,1,57,1) 100%);
+}
+
+.menu-comida{
+    height: 100%;
+    margin: 0;
+    padding-top: 5rem;
+    width: 60%;
+    margin: 0 auto;
+}
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    margin-right: 20px;
+}
+.seccion1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    margin: 0px 0px 20px 0px;
+    gap: 20px;
+    
+}
+
+.seccion1 h1{
+    color: #FDD400;
+    font-weight: 600;
+    text-align: center;
+}
+.seccion1 p{
+    color: #FDD400;
+    text-align: center;
+}
+.imagenes{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+.img{
+    width: 100px;
+    height: 80px;
+    border-radius: 50px;
+}
+
+.seccion{
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    padding: 2rem 3rem;
+}
+.seccion4{
+    display: flex;
+    align-items: start;
+    justify-content: space-evenly;
+    padding: 2rem 3rem;
+}
+.menu-platillo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}
+.menu-platillo h2{
+    color: #FF0000;
+}
+.list2 li{
+    color: #FDD400;
+
+}
+
+.platillos{
+    display: flex;
+    gap: 40px;
+    width: 100%;
+}
+hr{
+    width: 90%;
+    margin: 0 auto;
+    background-color: #634402;
+    color: #634402 ;
+    height: 1px;
+
+}
+footer { 
+    position: relative;
+    color: #fff;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
+
+
+.line-brown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80px;
+    background-color: #000000;
+    font-size: 12px
+}
+
+/* Media query para hacer el menú responsivo */
+@media screen and (max-width: 768px) {
+    li{
+        font-size: 12px;
+    }
+    .menu-comida{
+        width: 100%;
+   }
+    .logotipo-res {
+        height: 25vh;
+        /* mask-image: linear-gradient(#2f3033 70%, transparent); */
+    }
+    .logotipo{
+        width: 100%;
+    }
+    .navbar {
+        padding: 0 !important;
+    }
+    .seccion{
+        padding: 2rem 20px;
+    }
+    .menu-platillo h2{
+        font-size: 25px;
+    }
+    .platillos{
+        display: flex;
+        gap: 10px;
+    }
+}

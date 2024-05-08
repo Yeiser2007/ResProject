@@ -1,0 +1,77 @@
+CREATE TABLE root(id_usuario INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+	user VARCHAR(50), 
+	password VARCHAR(50));
+
+CREATE TABLE p_entradas(id_entrada INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+	nombre VARCHAR(50));
+
+CREATE TABLE s_entradas(id_entrada INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+	nombre VARCHAR(50));
+
+CREATE TABLE fuerte(id_fuerte INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+	nombre VARCHAR(50));
+
+CREATE TABLE menu(
+    id_menu INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    fecha DATE,
+    entrada11 INT,
+    entrada12 INT,
+    entrada21 INT,
+    entrada22 INT,
+    fuerte1 INT,
+    fuerte2 INT,
+    INDEX(entrada11),
+    INDEX(entrada12),
+    INDEX(entrada21),
+    INDEX(entrada22),
+    INDEX(fuerte1),
+    INDEX(fuerte2),
+    FOREIGN KEY (entrada11) REFERENCES p_entradas(id_entrada),
+    FOREIGN KEY (entrada12) REFERENCES p_entradas(id_entrada),
+    FOREIGN KEY (entrada21) REFERENCES s_entradas(id_entrada),
+    FOREIGN KEY (entrada22) REFERENCES s_entradas(id_entrada),
+    FOREIGN KEY (fuerte1) REFERENCES fuerte(id_fuerte),
+    FOREIGN KEY (fuerte2) REFERENCES fuerte(id_fuerte));
+
+
+CREATE TABLE clasificacion(id_clasificacion INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+	nombre VARCHAR(50));
+
+CREATE TABLE platillo(id_platillo INT NOT NULL PRIMARY KEY AUTO_INCREMENT, 
+	nombre VARCHAR(50), 
+	precio VARCHAR(15), 
+	tipo VARCHAR(30), 
+	clasificacion INT, 
+	INDEX(clasificacion), 
+	FOREIGN KEY (clasificacion) REFERENCES clasificacion(id_clasificacion));
+
+CREATE TABLE bebida(id_bebida INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	nombre VARCHAR(50), 
+	precio VARCHAR(15), 
+	tipo VARCHAR(30));
+
+CREATE TABLE evento(id_evento INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	nombre VARCHAR(50),
+	fecha_inicio DATE,
+	fecha_fin DATE);
+
+CREATE TABLE producto(id_producto INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	producto VARCHAR(40),
+	id_evento INT,
+	cantidad FLOAT,
+	INDEX(id_evento),
+	FOREIGN KEY (id_evento) REFERENCES evento(id_evento));
+
+CREATE TABLE pedido(id_pedido INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	fecha_pedido DATE,
+	fecha_entrega DATE, 
+	nombre_cliente VARCHAR(50),
+	telefono VARCHAR(15));
+
+CREATE TABLE orden(id_orden INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	id_pedido INT, 
+	id_producto INT,
+	INDEX(id_pedido),
+	INDEX(id_producto),
+    	FOREIGN KEY (id_pedido) REFERENCES pedido(id_pedido),
+    	FOREIGN KEY (id_producto) REFERENCES producto(id_producto));	
