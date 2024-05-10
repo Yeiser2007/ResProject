@@ -1,6 +1,6 @@
-<?php include 'templates/encabezado.php' ?>
-<link rel="stylesheet" href="css/controlStyle.css" />
-<?php include 'templates/header.php' ?>
+<?php include '../templates/encabezado.php' ?>
+<link rel="stylesheet" href="../css/controlStyle.css" />
+<?php include '../templates/header.php' ?>
 
 <div class="container">
     <div class="logotipo-res">
@@ -26,7 +26,7 @@
             <tbody>
                 <?php
                 // Consulta SQL
-                include("modules/Conexion.php");
+                include ("../modules/Conexion.php");
                 $sql = "SELECT `id_bebida`, `nombre`, `precio`, `tipo` FROM `bebida`";
                 $result = $conn->query($sql);
 
@@ -58,7 +58,8 @@
     </div>
 
     <!-- Modal para editar bebida -->
-    <div class="modal fade" id="editarBebidaModal" tabindex="-1" role="dialog" aria-labelledby="editarBebidaModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editarBebidaModal" tabindex="-1" role="dialog" aria-labelledby="editarBebidaModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -87,7 +88,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" onclick="cerrarModal()" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-secondary" onclick="cerrarModal()"
+                            data-dismiss="modal">Cancelar</button>
                         <button type="submit" name="update" class="btn btn-primary" onclick="guardarCambios()">Guardar
                             Cambios</button>
                     </div>
@@ -97,7 +99,8 @@
     </div>
 
     <!-- Modal para agregar bebida -->
-    <div class="modal fade" id="modalAgregarBebida" tabindex="-1" role="dialog" aria-labelledby="modalAgregarBebidaLabel" aria-hidden="true">
+    <div class="modal fade" id="modalAgregarBebida" tabindex="-1" role="dialog"
+        aria-labelledby="modalAgregarBebidaLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -136,9 +139,10 @@
             </div>
         </div>
     </div>
-</div>
+
 <!-- Modal Eliminar -->
-<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel" aria-hidden="true">
+<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -159,8 +163,9 @@
         </div>
     </div>
 </div>
-<?php include 'templates/footer.php' ?>
-<script src="JS/bebidas.js"></script>
+</div></div>
+<?php include '../templates/footer.php' ?>
+<script src="../JS/bebidas.js"></script>
 </body>
 
 </html>

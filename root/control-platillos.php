@@ -1,70 +1,63 @@
-<?php include 'templates/encabezado.php' ?>
-<link rel="stylesheet" href="css/controlStyle.css" />
-<?php include 'templates/header.php' ?>
+<?php include '../templates/encabezado.php' ?>
+<link rel="stylesheet" href="../css/controlStyle.css" />
+<?php include '../templates/header.php' ?>
 
 <div class="container">
   <div class="logotipo-res">
-    <img src="imagenes/logotipo.png" class="logotipo" alt="" />
+    <img src="../imagenes/logotipo.png" class="logotipo" alt="" />
   </div>
 
   <h2>Lista Platillos</h2>
   <div class="entradas-tabla">
     <input type="text" id="filtro" class="form-control filter" placeholder="Filtrar tabla..." />
-    <a type="button" id="btnAgregar" href="nombreCliente.php" class="btn btn-success">+ Agregar</a>
+    <button type="button" id="btnAgregar" onclick="abrirModalAgregar()" class="btn btn-success">+ Agregar</button>
   </div>
-  
   <div class="table-responsive">
     <table class="table">
-        <thead>
-            <tr>
-                <th class="int" style="display: none;">ID</th>
-                <th>Nombre</th>
-                <th>Fecha de Entrega</th>
-                <th>Teléfono</th>
-                <th>Resta</th>
-                <th>Hora de Entrega</th>
-                <th class="end">Detalles</th>
-                <th class="end">Acción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            // Consulta SQL
-            include("modules/Conexion.php");
-            $sql = "SELECT id_pedido, fecha_entrega, nombre_cliente, telefono, resta, hora_entrega FROM pedido";
-            $result = $conn->query($sql);
+      <thead>
+        <tr>
+          <th class="int">ID</th>
+          <th>Nombre</th>
+          <th class="col">Clasificacion</th>
+          <th class="col">Tipo</th>
+          <th class="int">Precio</th>
+          <th class="end">Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+        // Consulta SQL
+        include("../modules/Conexion.php");
+        $sql = "SELECT * FROM platillo";
+        $result = $conn->query($sql);
 
-            // Si hay resultados, mostrarlos en la tabla
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo '<td class="int" style="display: none;"><input type="text" value="' . $row["id_pedido"] . '" class="form-control entrada" disabled /></td>';
-                    echo '<td><input type="text" value="' . $row["nombre_cliente"] . '" class="form-control entrada" disabled /></td>';
-                    echo '<td><input type="text" value="' . $row["fecha_entrega"] . '" class="form-control entrada" disabled /></td>';
-                    echo '<td><input type="text" value="' . $row["telefono"] . '" class="form-control entrada" disabled /></td>';
-                    echo '<td><input type="text" value="' . $row["resta"] . '" class="form-control entrada" disabled /></td>';
-                    echo '<td><input type="text" value="' . $row["hora_entrega"] . '" class="form-control entrada" disabled /></td>';
-                    echo '<td><button class="btn detalles" onclick="mostrarDetalles(this)">Detalles</button></td>';
-                    echo '<td class="icons">
-                            <button class="btn editar" onclick="abrirModal(this)">
-                                <i class="bi bi-pencil-square"></i>
-                            </button>
-                            <button class="btn borrar" onclick="confirmarBorrado(this)">
-                                <i class="bi bi-trash"></i>
-                            </button>
-                        </td>';
-                     echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='8'>0 resultados</td></tr>";
-            }
-            $conn->close();
-            ?>
-        </tbody>
+        // Si hay resultados, mostrarlos en la tabla
+        if ($result->num_rows > 0) {
+          while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo '<td><input type="text" value="' . $row["id_platillo"] . '" class="form-control entrada" disabled /></td>';
+            echo '<td><input type="text" value="' . $row["nombre"] . '" class="form-control entrada" disabled /></td>';
+            echo '<td><input type="text" value="' . $row["clasificacion"] . '" class="form-control entrada" disabled /></td>';
+            echo '<td><input type="text" value="' . $row["tipo"] . '" class="form-control entrada" disabled /></td>';
+            echo '<td><input type="text" value="' . $row["precio"] . '" class="form-control entrada" disabled /></td>';
+            echo '<td class="icons">
+                  <button class="btn editar" onclick="abrirModal(this)">
+                    <i class="bi bi-pencil-square"></i>
+                  </button>
+                  <button class="btn borrar" onclick="confirmarBorrado(this)">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>';
+            echo "</tr>";
+          }
+        } else {
+          echo "0 resultados";
+        }
+        $conn->close();
+        ?>
+      </tbody>
     </table>
-</div>
-
-
+  </div>
 </div>
 </div>
 
@@ -159,7 +152,7 @@
           <div class="form-group">
             <?php
             // Realizar la consulta
-            include("modules/Conexion.php");
+            include("../modules/Conexion.php");
             $sql = "SELECT * FROM clasificacion";
             $result = $conn->query($sql);
             // Comprobar si hay resultados y mostrarlos en un elemento select
@@ -199,8 +192,8 @@
   </div>
 </div>
 
-<?php include 'templates/footer.php' ?>
-<script src="JS/filtro.js"></script>
+<?php include '../templates/footer.php' ?>
+<script src="../JS/control.js"></script>
 </body>
 
 </html>

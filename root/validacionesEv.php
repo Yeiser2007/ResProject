@@ -1,6 +1,6 @@
 <?php
 
-include("modules/Conexion.php");
+include("../modules/Conexion.php");
 
 if (isset($_GET['update'])) {
     $idEvento = $_GET['idEvento'];
@@ -23,7 +23,7 @@ if (isset($_GET['update'])) {
 
 <?php
 // Incluir el archivo de conexión a la base de datos
-include("modules/Conexion.php");
+include("../modules/Conexion.php");
 
 // Verificar si se enviaron los datos del formulario
 if (isset($_GET['agregar'])) {
@@ -58,22 +58,16 @@ if (isset($_GET['agregar'])) {
 }
 ?>
 <?php
-include("modules/Conexion.php");
+include("../modules/Conexion.php");
 // Verificar si se proporcionó el ID del evento en la URL
 if (isset($_GET['delete'])) {
-    // Obtener el ID del evento desde la URL
     $id_evento = $_GET['nombreEvento'];
-    
-    // Incluir el archivo de conexión a la base de datos
+    echo "$id_evento";
     include("modules/Conexion.php");
-    
-    // Preparar la consulta SQL para eliminar el evento
     $sql = "DELETE FROM evento WHERE nombre = ?";
     
     // Preparar la sentencia
     $stmt = $conn->prepare($sql);
-    
-    // Vincular parámetros y ejecutar la consulta
     $stmt->bind_param("s", $id_evento);
     if ($stmt->execute()) {
         // Redireccionar a la página principal u otra página después de eliminar el evento

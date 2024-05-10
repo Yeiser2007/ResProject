@@ -1,6 +1,6 @@
-<?php include 'templates/encabezado.php' ?>
-<link rel="stylesheet" href="css/col-table.css"/>
-<?php include 'templates/header.php' ?>
+<?php include '../templates/encabezado.php' ?>
+<link rel="stylesheet" href="../css/col-table.css"/>
+<?php include '../templates/header.php' ?>
 
 <!-- Agregar Modal -->
 <div class="modal fade" id="modalAgregar" tabindex="-1" aria-labelledby="modalAgregarLabel" aria-hidden="true">
@@ -109,7 +109,7 @@
 
 <div class="container">
     <div class="logotipo-res">
-        <img src="imagenes/logotipo.png" class="logotipo" alt="">
+        <img src="../imagenes/logotipo.png" class="logotipo" alt="">
     </div>
 
     <h2>Arma tu menú</h2>
@@ -135,7 +135,7 @@
                     <td id="id_select">
                         <?php
                         // Realizar la consulta
-                        include("modules/Conexion.php");
+                        include("../modules/Conexion.php");
                         $sql = "SELECT * FROM p_entradas";
                         $result = $conn->query($sql);
                         // Comprobar si hay resultados y mostrarlos en un elemento select
@@ -163,7 +163,7 @@
                     <td id="id_select">
                         <?php
                         // Realizar la consulta
-                        include("modules/Conexion.php");
+                        include("../modules/Conexion.php");
                         $sql = "SELECT * FROM p_entradas";
                         $result = $conn->query($sql);
                         // Comprobar si hay resultados y mostrarlos en un elemento select
@@ -192,7 +192,7 @@
                     <td id="id_select">
                     <?php
                         // Realizar la consulta
-                        include("modules/Conexion.php");
+                        include("../modules/Conexion.php");
                         $sql = "SELECT * FROM s_entradas";
                         $result = $conn->query($sql);
                         // Comprobar si hay resultados y mostrarlos en un elemento select
@@ -220,7 +220,7 @@
                     <td id="id_select">
                     <?php
                         // Realizar la consulta
-                        include("modules/Conexion.php");
+                        include("../modules/Conexion.php");
                         $sql = "SELECT * FROM s_entradas";
                         $result = $conn->query($sql);
                         // Comprobar si hay resultados y mostrarlos en un elemento select
@@ -249,7 +249,7 @@
                     <td id="id_select">
                     <?php
                         // Realizar la consulta
-                        include("modules/Conexion.php");
+                        include("../modules/Conexion.php");
                         $sql = "SELECT * FROM fuerte";
                         $result = $conn->query($sql);
                         // Comprobar si hay resultados y mostrarlos en un elemento select
@@ -277,7 +277,7 @@
                     <td id="id_select">
                     <?php
                         // Realizar la consulta
-                        include("modules/Conexion.php");
+                        include("../modules/Conexion.php");
                         $sql = "SELECT * FROM fuerte";
                         $result = $conn->query($sql);
                         // Comprobar si hay resultados y mostrarlos en un elemento select
@@ -309,13 +309,6 @@
     <button type="button" class="btn btn-primary" onclick="modalMenu()">Armar menú</button>
 </div>
 
-<footer>
-    <div class="line-green"></div>
-    <div class="line-brown">
-        @by El sabor de las Americas
-    </div>
-</footer>
-
 <!-- Modal para armar menú -->
 <div class="modal fade" id="modalArmarMenu" tabindex="-1" aria-labelledby="modalArmarMenuLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -326,7 +319,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="formArmarMenu" action="validacionesMenu.php" method="post">
+            <form id="formArmarMenu" action="validacionesMenu.php" method="get">
                 <div class="modal-body">
                     <!-- Inputs para las opciones de menú -->
                     <div class="form-group">
@@ -376,9 +369,9 @@
 
 
 
-<?php include 'templates/footer.php' ?>
-<script src="JS/control-menu.js"></script>
-<script src="JS/menu.js"></script>
+<?php include '../templates/footer.php' ?>
+<script src="../JS/control-menu.js"></script>
+<script src="../JS/menu.js"></script>
 
 
 </body>

@@ -62,15 +62,28 @@ function confirmarBorrado(element) {
     modal.show();
 }
 
-// Event listener para el botón de eliminar
-document.getElementById('eliminarBtn').addEventListener('click', function () {
-    // Aquí puedes agregar la lógica para enviar el formulario de borrado, por ejemplo, mediante AJAX
-    var id = document.getElementById('id_platillo').value;
-    // Aquí puedes enviar el ID a tu script PHP para realizar el borrado
-    // Por ejemplo, usando fetch o XMLHttpRequest
-    console.log('Borrando el platillo con ID ' + id);
+function editarModal(element) {
+    var row = element.closest('tr'); // Obtener la fila más cercana al botón clicado
+    var id = row.querySelector('input[type="text"]').value; // Obtener el ID del platillo
+    var nombre = row.querySelector('td:nth-child(2) input').value; // Obtener el nombre del platillo
 
-    // Cerrar el modal después de realizar el borrado
-    var modal = bootstrap.Modal.getInstance(document.getElementById('confirmarBorradoModal'));
-    modal.hide();
-});
+    // Llenar el formulario del modal con los datos obtenidos
+    document.getElementById('id_cliente').value = id;
+    document.getElementById('nombreclt').value = nombre;
+
+    // Mostrar el modal
+    var modal = new bootstrap.Modal(document.getElementById('editarModal'));
+    modal.show();
+}
+
+function mostrarDetalles(element){
+    var row = element.closest('tr'); // Obtener la fila más cercana al botón clicado
+    var detalles = row.querySelector('td:nth-child(7) input').value; // Obtener el nombre del platillo
+
+    // Llenar el formulario del modal con los datos obtenidos
+    document.getElementById('detalleTextArea').value = detalles;
+
+    // Mostrar el modal
+    var modal = new bootstrap.Modal(document.getElementById('detalles'));
+    modal.show();
+}

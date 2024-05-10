@@ -1,5 +1,5 @@
 <?php
-    include("modules/Conexion.php");
+    include("../modules/Conexion.php");
     $nombre_cliente = $_GET['nombre_cliente'];
     $id_evento = $_GET['id_evento'];
     if (isset($_GET['nombre_cliente'])) {

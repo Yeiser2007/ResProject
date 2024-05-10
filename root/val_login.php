@@ -1,5 +1,5 @@
 <?php 
-    include("modules/Conexion.php");
+    include("../modules/Conexion.php");
     if(isset($_POST['login'])){
      $user = $_POST['user'];
      $pass = $_POST['passw'];

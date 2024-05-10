@@ -1,19 +1,19 @@
-<?php include 'templates/encabezado.php' ?>
-<link rel="stylesheet" href="css/controlStyle.css" />
-<link rel="stylesheet" href="css/pedidosStyle.css" />
-<?php include 'templates/header.php' ?>
+<?php include '../templates/encabezado.php' ?>
+<link rel="stylesheet" href="../css/controlStyle.css" />
+<link rel="stylesheet" href="../css/pedidosStyle.css" />
+<?php include '../templates/header.php' ?>
 
 <div class="container">
   <h1>Lista de Compras</h1>
   <div class="seccion">
   <div class="tabla">
 <div class='table-responsive'>
-                    <table class='table'>
+                    <table class='table' id="tablaPedidos">
                    <thead class='thead-dark'><tr><th>ID Orden</th><th>Producto</th><th>Precio</th><th>Cantidad</th><th>Total</th><th>Eliminar</th></tr></thead>
                     <tbody>
     <?php
     // Verificar si se proporcionó el ID del cliente en la URL
-    include("modules/Conexion.php");
+    include("../modules/Conexion.php");
     if (isset($_GET['id_cliente'])) {
         $id_cliente = $_GET['id_cliente'];
         $sql_ordenes = "SELECT o.id_orden, p.producto, p.precio, o.cantidad, (p.precio * o.cantidad) AS total
@@ -72,7 +72,7 @@
   <div class="select">
         <?php
         // Suponiendo que ya tienes una conexión a tu base de datos
-        include("modules/Conexion.php");
+        include("../modules/Conexion.php");
         $id_cliente = $_GET['id_cliente'];
         $id_evento = $_GET['id_evento'];
         $sql_productos = "SELECT * FROM `producto` WHERE `id_evento` = $id_evento";
@@ -163,7 +163,7 @@
             <input type="text" class="form-control" id="fechaActual" required name="fechaActual" readonly>
           </div>
           <?php
-          include ('modules/Conexion.php');
+          include ('../modules/Conexion.php');
           $id_evento = $_GET['id_evento'];
 
           // Consulta SQL para obtener la fecha_fin del evento con el ID proporcionado
@@ -193,9 +193,9 @@
           // Suponiendo que ya tienes una conexión a tu base de datos
           
           // Consulta SQL para obtener los valores del pedido
-          include ("modules/Conexion.php");
+          include ("../modules/Conexion.php");
           $id_cliente = $_GET['id_cliente'];
-          $sql = "SELECT `id_pedido`, `nombre_cliente`, `telefono`, `hora_entrega` FROM `pedido` WHERE $id_cliente";
+          $sql = "SELECT `id_pedido`, `nombre_cliente`, `telefono`, `hora_entrega`,`acuenta` FROM `pedido` WHERE id_pedido =$id_cliente";
 
           // Ejecutar la consulta
           $resultado = $conn->query($sql);
@@ -216,18 +216,18 @@
             echo '<label for="hora">Hora de Entrega:</label>';
             echo '<input type="time" class="form-control" id="hora" name="hora_entrega" required value="' . $pedido['hora_entrega'] . '">';
             echo '</div>';
+            echo ' <div class="form-group">';
+            echo '<label for="telefonoCliente">Teléfono:</label>';
+            echo ' <input type="text" class="form-control" id="telefonoCliente" name="telefono" required value="' . $pedido['telefono'] . '"`>';
+            echo ' </div>';
+            echo '<div class="form-group">';
+            echo ' <label for="cuenta">A cuenta:</label>';
+            echo '<input type="text" class="form-control" id="acuenta" name="acuenta" required value="' . $pedido['acuenta'] . '">';
+            echo '</div>';
           } else {
             echo "No se encontraron pedidos.";
           }
           ?>
-          <div class="form-group">
-            <label for="telefonoCliente">Teléfono:</label>
-            <input type="text" class="form-control" id="telefonoCliente" name="telefono" required>
-          </div>
-          <div class="form-group">
-            <label for="cuenta">A cuenta:</label>
-            <input type="text" class="form-control" id="acuenta" name="acuenta" required>
-          </div>
           <div class="form-group">
             <label for="precioTotal">Precio Total:</label>
             <input type="text" class="form-control" id="precioTotal" name="total" readonly required>
@@ -236,6 +236,9 @@
             <label for="resta">Restaria:</label>
             <input type="text" class="form-control" id="resta" name="resta" required>
           </div>
+          <div class="modal-body">
+                <textarea id="detalleTextArea" name="detalles" style="display: none;" class="form-control" rows="5" readonly></textarea>
+            </div>
           <div class="modal-footer">
             <button type="submit" name="detallesPed" class="btn btn-primary">Guardar Pedido</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -244,70 +247,64 @@
     </div>
   </div>
 </div>
-<?php include('templates/footer.php')?>
-<script>
-  function mostrarModal(id_orden, producto, precio, cantidad, total) {
-    document.getElementById('id_orden').value = id_orden;
-    document.getElementById('producto').innerText = producto;
-    $('#eliminarOrdenModal').modal('show');
-  }
-</script>
-<script>
-  // Obtener la fecha actual
-  var fechaActual = new Date();
+<?php include('../templates/footer.php')?>
 
+<script>
+      var detalles = "";
+        // Recorrer todas las filas de la tabla
+        $('#tablaPedidos tbody tr').each(function() {
+            var fila = $(this);
+            var producto = fila.find('td:nth-child(2)').text();
+            var cantidad = fila.find('td:nth-child(4)').text();
+            // Agregar los detalles de producto y cantidad a la cadena de detalles
+            detalles += "Producto: " + producto + "-> Cantidad: " + cantidad + "\n";
+            console.log(detalles);
+        });
+        // Mostrar los detalles en el modal
+        $('#detalleTextArea').val(detalles);
+  var fechaActual = new Date();
   // Obtener los componentes de la fecha (año, mes, día)
   var año = fechaActual.getFullYear();
   var mes = ('0' + (fechaActual.getMonth() + 1)).slice(-2); // Agregar 1 ya que los meses se indexan desde 0
   var día = ('0' + fechaActual.getDate()).slice(-2);
-
-  // Formatear la fecha en el formato "año-mes-día"
   var fechaFormateada = año + '-' + mes + '-' + día;
 
-  // Mostrar la fecha formateada en el input correspondiente
   var fechaActualInput = document.getElementById('fechaActual');
   fechaActualInput.value = fechaFormateada;
 
-  // Calcular el precio total sumando los valores de la columna Total
   var precioTotalInput = document.getElementById('precioTotal');
-  var totalCells = document.querySelectorAll('tbody tr td:last-child');
+  var totalCells = document.querySelectorAll('tbody tr td:nth-last-child(2)');
   var precioTotal = 0;
   totalCells.forEach(function (cell) {
     precioTotal += parseFloat(cell.textContent);
   });
-  precioTotalInput.value = precioTotal.toFixed(2); // Formatear el precio total a dos decimales
+  precioTotalInput.value = precioTotal.toFixed(2);
 </script>
 <script>
+
   function calcularResta() {
     var acuenta = parseFloat(document.getElementById('acuenta').value);
     var precioTotal = parseFloat(document.getElementById('precioTotal').value);
 
-    // Verificar si el valor de "A cuenta" es mayor que el "Precio Total"
     if (acuenta > precioTotal) {
       alert("El valor de A cuenta no puede ser mayor que el Precio Total.");
       document.getElementById('acuenta').value = precioTotal;
       acuenta = precioTotal;
     }
 
-    // Calcular la resta
     var resta = precioTotal - acuenta;
 
-    // Mostrar el resultado en el input "Restaría"
     var restaInput = document.getElementById('resta');
     restaInput.value = resta.toFixed(2);
 
-    // Cambiar el color del texto según el valor de "Restaría"
     if (resta === 0) {
       restaInput.style.color = 'green';
     } else {
       restaInput.style.color = 'red';
     }
   }
-
   document.getElementById('acuenta').addEventListener('input', calcularResta);
   document.getElementById('precioTotal').addEventListener('input', calcularResta);
-
-  // Llamar a la función inicialmente para que el color se ajuste en caso de valores predeterminados
   calcularResta();
 </script>
 

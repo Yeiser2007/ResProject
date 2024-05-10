@@ -1,6 +1,6 @@
 <?php
 
-include("modules/Conexion.php");
+include("../modules/Conexion.php");
 if (isset($_POST['insertar_plat'])) {
     $nombre = $_POST['nombre'];
     $clasificacion = $_POST['clasificacion'];
@@ -56,7 +56,7 @@ if (isset($_POST['update'])) {
 
 if (isset($_POST['eliminar'])) {
     // Obtener el ID del platillo a eliminar
-    $id_platillo = $_POST['id_delete'];
+    $id_platillo = $_POST['id_platillo'];
 
     // Preparar la consulta SQL con un marcador de posición
     $sql = "DELETE FROM platillo WHERE id_platillo = ?";

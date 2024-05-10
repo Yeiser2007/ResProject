@@ -4,8 +4,8 @@
 
 
 body{
-    background: rgb(255,195,0);
-    background: radial-gradient(circle, rgba(255,195,0,1) 0%, rgba(231,186,42,1) 100%);   
+   
+    background: radial-gradient(circle,#F2D64B 0%, #F2D64B 100%);   
 }
 
 .menu-comida{
@@ -166,7 +166,7 @@ hr{
         /* mask-image: linear-gradient(#2f3033 70%, transparent); */
     }
     .logotipo{
-        width: 100%;
+        width: 60%;
     }
     .navbar {
         padding: 0 !important;

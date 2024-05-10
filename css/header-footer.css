@@ -33,6 +33,7 @@ nav.navbar {
     background-color: var(--color-primario);
     color: white;
     height: 80px;
+    z-index: 10;
 }
 
 .navbar-nav {
@@ -87,10 +88,12 @@ color: rgb(223, 0, 0);
 
 .navbar-toggler[aria-expanded="true"] .fa-bars::before {
     content: '\f00d';
+    color: #ffffff;
+    animation: dezlis .3s ease-in-out;
 }
 
 .navbar-toggler[aria-expanded="true"] .fas.fa-bars::before {
-    color: #000000;
+    color: #ffffff;
 }
 
 .navbar-nav .nav-link {
@@ -139,11 +142,55 @@ color: rgb(223, 0, 0);
     padding: 1rem;
     border-radius: 50px;
     z-index: -1;
-    color: #000000 !important;
+    color: #fffbfb !important;
 }
 
+.colapsing{
+    animation: closing .3s ease-in-out reverse;
+}
+footer {
+    background-color: var(--color-primario);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    width: 100%;
+}
 
-@media (max-width: 1000px) {
+.redes-sociales {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.redes-sociales li {
+    display: inline-block;
+    margin-right: 10px;
+}
+.redes-sociales li a i{
+    color: #ffffff;
+}
+.text-foot{
+    color: #ffffff;
+}
+@keyframes dezlis {
+	0%{
+		transform: translateX(100%);
+	}
+	100%{
+		transform: translateX(0);
+	}
+}
+
+@keyframes closing {
+	0%{
+		transform: translateX(0);
+	}
+	100%{
+		transform: translateX(100);
+	}
+}
+
+@media (max-width: 800px) {
     .logotipo-res {
         display: flex;
         flex-direction: column;
@@ -153,16 +200,35 @@ color: rgb(223, 0, 0);
         height: 50vh;
         /* mask-image: linear-gradient(#2f3033 70%, transparent); */
     }
-    /* .navbar-collapse {
+    .navbar-collapse {
+        position: fixed;
+        background-color: var(--color-primario);
         height: 100vh;
-        width: 70%;
+        width: 300px;
         margin: 0px;
         padding: 3rem 1rem;
         top: 0px;
         right: 0px;
-        transition: .01s ease-in;
+        z-index: 10;
+        transition: transform 0.3s ease-in-out;
     }
-     */
+    .navbar-collapse.collapsing {
+        /* Estilos personalizados durante la animación de cierre */
+        transform: translateX(100%);
+    }
+    .navbar-nav {
+        display: flex;
+        padding: 3rem 1rem;
+        align-items: center;
+        justify-content: start;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 300px;
+        height: 100vh;
+        margin-top: 3rem;
+        animation: dezlis 0.3s ease-in-out;
+    }
     
     .navbar-nav {
         gap: 0px;
@@ -189,5 +255,6 @@ color: rgb(223, 0, 0);
         width: auto;
         height: auto;
         padding: 0;
+        color: #ffffff;
     }
 }

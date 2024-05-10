@@ -1,10 +1,9 @@
-<?php include 'templates/encabezadoUser.php' ?>
-<link rel="stylesheet" href="css/desayunosStyle.css" />
-<?php include 'templates/headerUser.php' ?>
-
+<?php include '../templates/encabezado.php' ?>
+<link rel="stylesheet" href="../css/desayunosStyle.css" />
+<?php include '../templates/header.php' ?>
 <div class="menu-comida">
   <div class="logotipo-res">
-    <img src="imagenes/logotipo.png" class="logotipo" alt="" />
+    <img src="../imagenes/logotipo.png" class="logotipo" alt="" />
   </div>
   <div class="seccion1">
     <h1>DESAYUNOS</h1>
@@ -20,7 +19,7 @@
     <div class="menu-platillo">
       <?php
       // Tu consulta SQL para obtener los platillos de la clasificación 1
-      include("modules/Conexion.php");
+      include("../modules/Conexion.php");
       $sql = "SELECT `nombre`, `precio` FROM `platillo` WHERE `clasificacion` = 1";
       $result = $conn->query($sql);
 
@@ -55,7 +54,7 @@
       <h2>Omelettes</h2>
       <?php
       // Tu consulta SQL para obtener los platillos de la clasificación 1
-      include("modules/Conexion.php");
+      include("../modules/Conexion.php");
       $sql = "SELECT `nombre`, `precio` FROM `platillo` WHERE `clasificacion` = 2";
       $result = $conn->query($sql);
 
@@ -92,7 +91,7 @@
       <h2>Chilaquiles</h2>
       <?php
       // Tu consulta SQL para obtener los platillos de la clasificación 1
-      include("modules/Conexion.php");
+      include("../modules/Conexion.php");
       $sql = "SELECT `nombre`, `precio` FROM `platillo` WHERE `clasificacion` = 3";
       $result = $conn->query($sql);
 
@@ -126,7 +125,7 @@
       <h2>Enchiladas</h2>
       <?php
       // Tu consulta SQL para obtener los platillos de la clasificación 1
-      include("modules/Conexion.php");
+      include("../modules/Conexion.php");
       $sql = "SELECT `nombre`, `precio` FROM `platillo` WHERE `clasificacion` = 4";
       $result = $conn->query($sql);
 
@@ -163,7 +162,7 @@
       <h2>Huaraches</h2>
       <?php
       // Tu consulta SQL para obtener los platillos de la clasificación 1
-      include("modules/Conexion.php");
+      include("../modules/Conexion.php");
       $sql = "SELECT `nombre`, `precio` FROM `platillo` WHERE `clasificacion` = 5";
       $result = $conn->query($sql);
 
@@ -197,7 +196,7 @@
       <h2>Molletes</h2>
       <?php
       // Tu consulta SQL para obtener los platillos de la clasificación 1
-      include("modules/Conexion.php");
+      include("../modules/Conexion.php");
       $sql = "SELECT `nombre`, `precio` FROM `platillo` WHERE `clasificacion` = 6";
       $result = $conn->query($sql);
 
@@ -234,7 +233,7 @@
       <h2>Otros</h2>
       <?php
       // Tu consulta SQL para obtener los platillos de la clasificación 1
-      include("modules/Conexion.php");
+      include("../modules/Conexion.php");
       $sql = "SELECT `nombre`, `precio` FROM `platillo` WHERE `clasificacion` = 7";
       $result = $conn->query($sql);
 
@@ -267,7 +266,7 @@
   </div>
 </div>
 
-<?php include 'templates/footer.php' ?>
+<?php include '../templates/footer.php' ?>
 </body>
 
 </html>

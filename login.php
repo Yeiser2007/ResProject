@@ -17,7 +17,7 @@
       <img src="imagenes/logotipo.png" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">Administrador</h5>
-        <form action="val_login.php" method="post">
+        <form action="root/val_login.php" method="post">
           <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <div class="input-group">

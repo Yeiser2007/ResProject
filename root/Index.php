@@ -1,6 +1,6 @@
-<?php include 'templates/encabezadoUser.php' ?>
-<link rel="stylesheet" href="css/homeStyle.css" />
-<?php include 'templates/headerUser.php' ?>
+<?php include '../templates/encabezado.php' ?>
+<link rel="stylesheet" href="../css/homeStyle.css" />
+<?php include '../templates/header.php' ?>
 
 <!-- modal -->
 <div class="modal fade" id="anuncioModal" tabindex="-1" aria-labelledby="anuncioModalLabel" aria-hidden="true">
@@ -13,7 +13,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img src="imagenes/anuncio.jpg" class="img-fluid" alt="Anuncio">
+                <img src="../imagenes/anuncio.jpg" class="img-fluid" alt="Anuncio">
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
 <div class="contenido-img">
     <div class="logotipo-res">
         <h1>Bienvenidos</h1>
-        <img src="imagenes/logotipo.png" class="logotipo" alt="" />
+        <img src="../imagenes/logotipo.png" class="logotipo" alt="" />
 
         <div class="wrapper">
             <button id="botonHorario" class="boton-horario">Horario actual
@@ -51,19 +51,19 @@
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block" src="imagenes/res1.jpg" alt="First slide" />
+                    <img class="d-block" src="../imagenes/res1.jpg" alt="First slide" />
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block" src="imagenes/re2.jpg" alt="Second slide" />
+                    <img class="d-block" src="../imagenes/re2.jpg" alt="Second slide" />
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block" src="imagenes/res3.jpg" alt="Third slide" />
+                    <img class="d-block" src="../imagenes/res3.jpg" alt="Third slide" />
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block" src="imagenes/res4.jpg" alt="Third slide" />
+                    <img class="d-block" src="../imagenes/res4.jpg" alt="Third slide" />
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block" src="imagenes/res5.jpg" alt="Third slide" />
+                    <img class="d-block" src="../imagenes/res5.jpg" alt="Third slide" />
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -79,7 +79,7 @@
 </div>
 <div class="seccion3">
     <h2>Visitanos</h2>
-    <img src="imagenes/Icono-Horario.png" class="time" alt="">
+    <img src="../imagenes/Icono-Horario.png" class="time" alt="">
     <div class="horario">
         <p>(De lunes a sabado)</p>
         <p>Desayunos : 8:30am - 1:00p.m.</p>
@@ -94,9 +94,9 @@
 </div>
 
 
-<?php include 'templates/footer.php' ?>
-<script src="JS/boton.js"></script>
-<script src="JS/modal.js"></script>
+<?php include '../templates/footer.php' ?>
+<script src="../JS/boton.js"></script>
+<script src="../JS/modal.js"></script>
 
 </body>
 

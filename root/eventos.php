@@ -1,10 +1,10 @@
-<?php include 'templates/encabezado.php' ?>
-<link rel="stylesheet" href="css/controlStyle.css" />
-<?php include 'templates/header.php' ?>
+<?php include '../templates/encabezado.php' ?>
+<link rel="stylesheet" href="../css/controlStyle.css" />
+<?php include '../templates/header.php' ?>
 
 <div class="container">
   <div class="logotipo-res">
-    <img src="imagenes/logotipo.png" class="logotipo" alt="" />
+    <img src="../imagenes/logotipo.png" class="logotipo" alt="" />
   </div>
 
   <h2>Lista Platillos</h2>
@@ -25,7 +25,7 @@
         <tbody>
             <?php
             // Consulta SQL
-            include("modules/Conexion.php");
+            include("../modules/Conexion.php");
             $sql = "SELECT `id_evento`, `nombre`, `fecha_fin` FROM `evento`";
             $result = $conn->query($sql);
 
@@ -119,7 +119,6 @@
 </div>
 
 
-!-- Modal para eliminar evento -->
 <div class="modal fade" id="eliminarEventoModal" tabindex="-1" role="dialog" aria-labelledby="eliminarEventoModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -146,8 +145,8 @@
 </div>
 
 </div>
-<?php include 'templates/footer.php' ?>
-<script src="JS/eventos.js"></script>
+<?php include '../templates/footer.php' ?>
+<script src="../JS/eventos.js"></script>
 </body>
 
 </html>

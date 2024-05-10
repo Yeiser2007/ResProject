@@ -1,7 +1,7 @@
 
 body{
   flex: 1;
-  background-color: #1a0885;
+  background-color: #F2DCC9;
   background-repeat: no-repeat; 
   height: 100vh;
 }
@@ -26,10 +26,11 @@ body{
     font-size: 20px;
   }
   h1{
-    font-size: 40px;
+    font-size: 30px;
     text-align: center;
     padding-top: 6rem;
-    color:#fff;
+    color:#000000;
+    font-size: 'Poppins';
   }
   .contain {
     display: grid;
@@ -102,9 +103,7 @@ body{
     color: #da1687;
     transition: all .2s ease;  
    }
-   .navbar-toggler .fas.fa-bars {
-    color: #000000;
-}
+  
 
    
    @media screen and (max-width: 768px) {
@@ -117,14 +116,6 @@ body{
       margin: 0 auto;
       height: auto;
     }
-    .navbar-collapse {
-      background-color: #fff;
-      width: 100%;
-      margin: 0;
-      padding: 3rem 1rem;
-      height: auto;
-  }
-  .navbar-nav .nav-link {
-    color: #000000 ;
-}
+
+
 }

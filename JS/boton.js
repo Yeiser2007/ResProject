@@ -29,7 +29,7 @@ function obtenerHoraActual() {
       };
     }
     else {
-      cambiarColoresAnimacion('red', '#808B96');
+      cambiarColoresAnimacion('red', '');
       boton.textContent = "Cerrado";
       boton.onclick = null; // Eliminar cualquier enlace si el botón está en gris
     }

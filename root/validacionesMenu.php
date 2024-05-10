@@ -1,6 +1,6 @@
 <?php
 
-include("modules/Conexion.php");
+include("../modules/Conexion.php");
 
 if (isset($_POST['insertar'])) {
     $tipo = $_POST['tipoEntrada'];
@@ -204,15 +204,15 @@ if (isset($_POST['eliminar'])) {
     $conn->close();
 }
 
-if (isset($_POST['guardarMenu'])) {
-    $entrada1 = $_POST['entrada11'];
-    $entrada2 = $_POST['entrada12'];
-    $entrada3 = $_POST['entrada21'];
-    $entrada4 = $_POST['entrada22'];
-    $fuerte1 = $_POST['fuerte1'];
-    $fuerte2 = $_POST['fuerte2'];
-    $date = $_POST['fecha'];
-    $precio = $_POST['precio'];
+if (isset($_GET['guardarMenu'])) {
+    $entrada1 = $_GET['entrada11'];
+    $entrada2 = $_GET['entrada12'];
+    $entrada3 = $_GET['entrada21'];
+    $entrada4 = $_GET['entrada22'];
+    $fuerte1 = $_GET['fuerte1'];
+    $fuerte2 = $_GET['fuerte2'];
+    $date = $_GET['fecha'];
+    $precio = $_GET['precio'];
     // Preparar la consulta SQL
     $sql = "INSERT INTO `menu` (`fecha`, `precio`, `entrada1`, `entrada12`, `entrada21`, `entrada22`, `fuerte1`, `fuerte2`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 

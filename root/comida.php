@@ -1,6 +1,6 @@
-<?php include 'templates/encabezadoUser.php' ?>
-<link rel="stylesheet" href="css/comida.css">
-<?php include 'templates/headerUser.php' ?>
+<?php include '../templates/encabezado.php' ?>
+<link rel="stylesheet" href="../css/comida.css">
+<?php include '../templates/header.php' ?>
 
 <div class="menu-comida">
     <div class="logotipo-res">
@@ -25,7 +25,7 @@
     </div>
     <hr>
     <?php
-    include ("modules/Conexion.php");
+    include ("../modules/Conexion.php");
 
     // Preparar la consulta SQL para obtener el último registro
     $sql = "SELECT * FROM `menu` ORDER BY `id_menu` DESC LIMIT 1";
@@ -80,7 +80,7 @@
             <p>(verduras, chilaquiles, nopales)</p>
             <?php
             // Tu consulta SQL para obtener los platillos de la clasificación 1
-            include ("modules/Conexion.php");
+            include ("../modules/Conexion.php");
             $sql = "SELECT `nombre`, `precio` FROM `platillo` WHERE `clasificacion` = 8";
             $result = $conn->query($sql);
 
@@ -115,7 +115,7 @@
             <h2>Para preparar</h2>
             <?php
             // Tu consulta SQL para obtener los platillos de la clasificación 1
-            include ("modules/Conexion.php");
+            include ("../modules/Conexion.php");
             $sql = "SELECT `nombre`, `precio` FROM `platillo` WHERE `clasificacion` = 9";
             $result = $conn->query($sql);
 
@@ -147,7 +147,8 @@
         </div>
     </div>
 </div>
-<?php include 'templates/footer.php' ?>
+
+<?php include '../templates/footer.php' ?>
 </body>
 
 </html>
