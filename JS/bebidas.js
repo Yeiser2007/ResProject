@@ -27,13 +27,13 @@ function abrirModalEliminar(btnEliminar) {
     // ID de la bebida
     var nombre = fila.cells[1].querySelector("input").value;   // Nombre de la bebida
     // Actualizar el contenido del modal con los valores obtenidos
-    document.getElementById('modalIdBebida').textContent = idBebida;
+    document.getElementById('modalIdBebida').value = idBebida;
     document.getElementById('modalNombre').textContent = nombre;
     // Mostrar el modal
     $('#modalEliminar').modal('show');
 }
 
-function eliminarBebida() {
+function eliminarBebida(element) {
     // Aquí puedes agregar la lógica para eliminar la bebida con el ID correspondiente
     // Por ejemplo, puedes enviar una solicitud AJAX al servidor para procesar la eliminación
     // Una vez que se complete la eliminación, puedes cerrar el modal si es necesario

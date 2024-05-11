@@ -72,19 +72,19 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="idBebidaEdit">ID Bebida:</label>
-                            <input type="text" class="form-control" id="idBebidaEdit" name="idBebida" readonly>
+                            <input type="text" class="form-control" id="idBebidaEdit" name="id_bebida" readonly>
                         </div>
                         <div class="form-group">
                             <label for="nombreBebidaEdit">Nombre:</label>
-                            <input type="text" class="form-control" id="nombreBebidaEdit" name="nombreBebida">
+                            <input type="text" class="form-control" id="nombreBebidaEdit" name="nombre">
                         </div>
                         <div class="form-group">
                             <label for="precioBebidaEdit">Precio:</label>
-                            <input type="text" class="form-control" id="precioBebidaEdit" name="precioBebida">
+                            <input type="text" class="form-control" id="precioBebidaEdit" name="precio">
                         </div>
                         <div class="form-group">
                             <label for="tipoBebidaEdit">Tipo:</label>
-                            <input type="text" class="form-control" id="tipoBebidaEdit" name="tipoBebida">
+                            <input type="text" class="form-control" id="tipoBebidaEdit" name="tipo">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -113,15 +113,11 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="nombreBebida">Nombre:</label>
-                            <input type="text" class="form-control" id="nombreBebida" name="nombreBebida">
+                            <input type="text" class="form-control" id="nombreBebida" name="nombre">
                         </div>
                         <div class="form-group">
                             <label for="precioBebida">Precio:</label>
-                            <input type="text" class="form-control" id="precioBebida" name="precioBebida">
-                        </div>
-                        <div class="form-group">
-                            <label for="tipoBebida">Tipo:</label>
-                            <input type="text" class="form-control" id="tipoBebida" name="tipoBebida">
+                            <input type="text" class="form-control" id="precioBebida" name="precio">
                         </div>
                         <div class="form-group">
                             <label for="tipo">Seleccionar tipo:</label>
@@ -139,31 +135,32 @@
             </div>
         </div>
     </div>
-
-<!-- Modal Eliminar -->
-<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalEliminarLabel">Eliminar Bebida</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>¿Estás seguro de que deseas eliminar la bebida con ID <span id="modalIdBebida"></span> y nombre
-                    <span id="modalNombre"></span>?
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" onclick="eliminarBebida()">Eliminar</button>
+</div>
+    <!-- Modal Eliminar -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminarLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <form action="validacionesBeb.php" method="get">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalEliminarLabel">Eliminar Bebida</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que deseas eliminar la bebida con ID <input type="text" disabled style="width: 20px; border:none; background:none;" name="id_bebida" id="modalIdBebida" required></input> y nombre
+                        <span id="modalNombre"></span>?
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" name="delete" class="btn btn-danger">Eliminar</button>
+                </div>
+                </form>
             </div>
         </div>
     </div>
-</div>
-</div></div>
 <?php include '../templates/footer.php' ?>
 <script src="../JS/bebidas.js"></script>
 </body>

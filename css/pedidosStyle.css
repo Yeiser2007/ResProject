@@ -6,7 +6,7 @@
     margin-bottom: 2rem;
     margin-top: 8rem;
 }
-.select{
+.seleccion{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,7 +21,15 @@
     width: 40%;
     text-align: center;
 }
-
+.btn-cliente{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.cliente-btn{
+    width: 150px;
+}
 .btn-addsec{
     display: flex;
     align-items: center;
@@ -31,6 +39,7 @@
 .seccion{
     width: 100%;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     background-color: #fff;
@@ -40,6 +49,8 @@
 }
 .tabla{
     width: 70%;
+    display: flex;
+    flex-direction: column;
 }
 @media (max-width: 767px) {
     .seccion{

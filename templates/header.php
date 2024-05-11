@@ -36,7 +36,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a class="nav-link salir" href="login.php">Salir</a>
+            <a class="nav-link salir" href="../login.php">Salir</a>
           </li>
         </ul>
 

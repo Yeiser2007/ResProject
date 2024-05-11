@@ -6,114 +6,113 @@
 <div class="container">
   <h1>Lista de Compras</h1>
   <div class="seccion">
-  <div class="tabla">
-<div class='table-responsive'>
-                    <table class='table' id="tablaPedidos">
-                   <thead class='thead-dark'><tr><th>ID Orden</th><th>Producto</th><th>Precio</th><th>Cantidad</th><th>Total</th><th>Eliminar</th></tr></thead>
-                    <tbody>
-    <?php
-    // Verificar si se proporcionó el ID del cliente en la URL
-    include("../modules/Conexion.php");
-    if (isset($_GET['id_cliente'])) {
-        $id_cliente = $_GET['id_cliente'];
-        $sql_ordenes = "SELECT o.id_orden, p.producto, p.precio, o.cantidad, (p.precio * o.cantidad) AS total
+    <div class="tabla">
+      <div class='table-responsive'>
+        <table class='table' id="tablaPedidos">
+          <thead class='thead-dark'>
+            <tr>
+              <th>ID Orden</th>
+              <th>Producto</th>
+              <th>Precio</th>
+              <th>Cantidad</th>
+              <th>Total</th>
+              <th>Eliminar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            // Verificar si se proporcionó el ID del cliente en la URL
+            include ("../modules/Conexion.php");
+            if (isset($_GET['id_cliente'])) {
+              $id_cliente = $_GET['id_cliente'];
+              $sql_ordenes = "SELECT o.id_orden, p.producto, p.precio, o.cantidad, (p.precio * o.cantidad) AS total
                     FROM orden o
                     INNER JOIN producto p ON o.id_producto = p.id_producto
                     WHERE o.id_pedido = ?";
-        // Preparar la sentencia
-        $stmt = $conn->prepare($sql_ordenes);
-        if ($stmt) {
-            // Vincular el parámetro
-            $stmt->bind_param("i", $id_cliente);
-            // Ejecutar la consulta
-            if ($stmt->execute()) {
-                // Obtener el resultado de la consulta
-                $resultado = $stmt->get_result();
-                // Verificar si se encontraron resultados
-                if ($resultado->num_rows > 0) {
-                    // Mostrar la tabla con los estilos de Bootstrap
-                  
-                    // Iterar sobre los resultados para mostrarlos en la tabla
+              // Preparar la sentencia
+              $stmt = $conn->prepare($sql_ordenes);
+              if ($stmt) {
+                $stmt->bind_param("i", $id_cliente);
+                if ($stmt->execute()) {
+                  $resultado = $stmt->get_result();
+                  if ($resultado->num_rows > 0) {
                     while ($fila = $resultado->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $fila['id_orden'] . "</td>";
-                        echo "<td>" . $fila['producto'] . "</td>";
-                        echo "<td>" . $fila['precio'] . "</td>";
-                        echo "<td>" . $fila['cantidad'] . "</td>";
-                        echo "<td>" . $fila['total'] . "</td>";
-                        echo "<td><button class='btn btn-danger' data-toggle='modal' data-target='#eliminarModal' onclick='mostrarDatos(" . $fila['id_orden'] . ", \"" . $fila['producto'] . "\")'>Eliminar</button></td>";
-                        echo "</tr>";
+                      echo "<tr>";
+                      echo "<td>" . $fila['id_orden'] . "</td>";
+                      echo "<td>" . $fila['producto'] . "</td>";
+                      echo "<td>" . $fila['precio'] . "</td>";
+                      echo "<td>" . $fila['cantidad'] . "</td>";
+                      echo "<td>" . $fila['total'] . "</td>";
+                      echo "<td><button class='btn btn-danger' data-toggle='modal' data-target='#eliminarModal' onclick='mostrarDatos(" . $fila['id_orden'] . ", \"" . $fila['producto'] . "\")'>Eliminar</button></td>";
+                      echo "</tr>";
                     }
-                    echo "</tbody>";
-                    echo "</table>";
-                    echo "</div>";
+                  } 
                 } else {
-                    echo "No se encontraron registros.";
+                  echo "<div class='alert alert-danger' role='alert'>Error al ejecutar la consulta: " . $conn->error . "</div>";
                 }
-            } else {
-                echo "<div class='alert alert-danger' role='alert'>Error al ejecutar la consulta: " . $conn->error . "</div>";
+                // Cerrar la sentencia
+                $stmt->close();
+              } else {
+                echo "<div class='alert alert-danger' role='alert'>Error al preparar la consulta.</div>";
+              }
             }
-            // Cerrar la sentencia
-            $stmt->close();
-        } else {
-            echo "<div class='alert alert-danger' role='alert'>Error al preparar la consulta.</div>";
-        }
-    }
-
-    // Cerrar la conexión
-    $conn->close();
-    ?>
-
-  <!-- Botón para mostrar el modal -->
-  <button class="btn btn-primary mt-2" data-toggle="modal" data-target="#datosClienteModal">
-    Datos cliente
-  </button>
-  </div>
-  <div class="select">
-        <?php
-        // Suponiendo que ya tienes una conexión a tu base de datos
-        include("../modules/Conexion.php");
-        $id_cliente = $_GET['id_cliente'];
-        $id_evento = $_GET['id_evento'];
-        $sql_productos = "SELECT * FROM `producto` WHERE `id_evento` = $id_evento";
-        $resultado_productos = $conn->query($sql_productos);
-        // Verificar si la consulta de productos fue exitosa
-        if ($resultado_productos) {
-            echo "<form action='validacionesPed.php' method='GET'>";
-            echo "<input type='hidden' name='id_cliente' value='$id_cliente'>";
-            echo "<input type='hidden' name='id_evento' value='$id_evento'>";
-            echo "<label for='productos'>Selecciona un producto:</label>";
-            echo "<select name='productos' id='productos' class='form-control'>";
-            echo "<option value=''>Selecciona un producto</option>";
-            // Iterar sobre los resultados para generar las opciones del select
-            while ($row = $resultado_productos->fetch_assoc()) {
-                echo "<option value='" . $row['id_producto'] . "'>" . $row['producto'] . "</option>";
-            }
-
-            echo "</select>";
-
-            // Agregar los campos de cantidad y precio
-            echo "<label for='cantidad'>Cantidad:</label>";
-            echo "<input type='number' id='cantidad' name='cantidad' required min='1' value='1' class='form-control'>";
-
-            // Agregar el botón "Agregar" que enviará el formulario
+            $conn->close();
             ?>
-            <div class="btn-addsec">
-            <button type='submit' name='agregar' class='btn btn-primary btn-add'>Agregar</button>
-            </div>
-            <?php
-            echo "</form>";
+          </tbody>
+        </table>
+        </div>
+        <!-- Botón para mostrar el modal -->
+        <div class="btn-cliente">
+        <button class="btn btn-primary cliente-btn" disabled data-toggle="modal" data-target="#datosClienteModal">
+          Datos cliente
+        </button>
+        </div>
+      
+    </div>
 
-        } else {
-            // Mostrar un mensaje de error si la consulta de productos falla
-            echo "<div class='alert alert-danger' role='alert'>Error al ejecutar la consulta de productos: " . $conn->error . "</div>";
+    <div class="seleccion">
+      <?php
+      // Suponiendo que ya tienes una conexión a tu base de datos
+      include ("../modules/Conexion.php");
+      $id_cliente = $_GET['id_cliente'];
+      $id_evento = $_GET['id_evento'];
+      $sql_productos = "SELECT * FROM `producto` WHERE `id_evento` = $id_evento";
+      $resultado_productos = $conn->query($sql_productos);
+      // Verificar si la consulta de productos fue exitosa
+      if ($resultado_productos) {
+        echo "<form action='validacionesPed.php' method='GET'>";
+        echo "<input type='hidden' name='id_cliente' value='$id_cliente'>";
+        echo "<input type='hidden' name='id_evento' value='$id_evento'>";
+        echo "<label for='productos'>Selecciona un producto:</label>";
+        echo "<select name='productos' id='productos' class='form-control'>";
+        echo "<option value=''>Selecciona un producto</option>";
+        // Iterar sobre los resultados para generar las opciones del select
+        while ($row = $resultado_productos->fetch_assoc()) {
+          echo "<option value='" . $row['id_producto'] . "'>" . $row['producto'] . "</option>";
         }
-        ?>
-  </div>
 
+        echo "</select>";
+
+        // Agregar los campos de cantidad y precio
+        echo "<label for='cantidad'>Cantidad:</label>";
+        echo "<input type='number' id='cantidad' name='cantidad' required min='1' value='1' class='form-control'>";
+
+        // Agregar el botón "Agregar" que enviará el formulario
+        ?>
+        <div class="btn-addsec">
+          <button type='submit' name='agregar' class='btn btn-primary btn-add'>Agregar</button>
+        </div>
+        <?php
+        echo "</form>";
+
+      } else {
+        // Mostrar un mensaje de error si la consulta de productos falla
+        echo "<div class='alert alert-danger' role='alert'>Error al ejecutar la consulta de productos: " . $conn->error . "</div>";
+      }
+      ?>
+    </div>
   </div>
 </div>
-
 
 <div class="modal fade" id="eliminarOrdenModal" tabindex="-1" role="dialog" aria-labelledby="eliminarOrdenModalLabel"
   aria-hidden="true">
@@ -237,8 +236,9 @@
             <input type="text" class="form-control" id="resta" name="resta" required>
           </div>
           <div class="modal-body">
-                <textarea id="detalleTextArea" name="detalles" style="display: none;" class="form-control" rows="5" readonly></textarea>
-            </div>
+            <textarea id="detalleTextArea" name="detalles" style="display: none;" class="form-control" rows="5"
+              readonly></textarea>
+          </div>
           <div class="modal-footer">
             <button type="submit" name="detallesPed" class="btn btn-primary">Guardar Pedido</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -247,21 +247,45 @@
     </div>
   </div>
 </div>
-<?php include('../templates/footer.php')?>
+
+<?php include ('../templates/footer.php') ?>
+<script>
+  // Espera a que el DOM esté completamente cargado
+  document.addEventListener("DOMContentLoaded", function() {
+    // Selecciona la tabla
+    var tablaPedidos = document.getElementById("tablaPedidos");
+
+    // Verifica si hay filas en la tabla
+    if (tablaPedidos.rows.length > 1) {
+      // Si hay filas, habilita el botón
+      document.querySelector('.cliente-btn').removeAttribute('disabled');
+    }
+  });
+</script>
 
 <script>
-      var detalles = "";
-        // Recorrer todas las filas de la tabla
-        $('#tablaPedidos tbody tr').each(function() {
-            var fila = $(this);
-            var producto = fila.find('td:nth-child(2)').text();
-            var cantidad = fila.find('td:nth-child(4)').text();
-            // Agregar los detalles de producto y cantidad a la cadena de detalles
-            detalles += "Producto: " + producto + "-> Cantidad: " + cantidad + "\n";
-            console.log(detalles);
-        });
-        // Mostrar los detalles en el modal
-        $('#detalleTextArea').val(detalles);
+  function mostrarDatos(id_orden, producto) {
+    // Actualizar el valor del campo de ID de orden en el formulario
+    document.getElementById("id_orden").value = id_orden;
+    // Mostrar el nombre del producto en el span dentro del modal
+    document.getElementById("producto").innerText = producto;
+    // Abrir el modal
+    $('#eliminarOrdenModal').modal('show');
+  }
+</script>
+<script>
+  var detalles = "";
+  // Recorrer todas las filas de la tabla
+  $('#tablaPedidos tbody tr').each(function () {
+    var fila = $(this);
+    var producto = fila.find('td:nth-child(2)').text();
+    var cantidad = fila.find('td:nth-child(4)').text();
+    // Agregar los detalles de producto y cantidad a la cadena de detalles
+    detalles += "Producto: " + producto + "-> Cantidad: " + cantidad + "\n";
+    console.log(detalles);
+  });
+  // Mostrar los detalles en el modal
+  $('#detalleTextArea').val(detalles);
   var fechaActual = new Date();
   // Obtener los componentes de la fecha (año, mes, día)
   var año = fechaActual.getFullYear();
