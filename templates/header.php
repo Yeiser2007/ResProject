@@ -33,7 +33,11 @@
               <li><a href="nombreCliente.php" class="btn btn-4"><i class="bi bi-patch-plus"></i>Tomar pedido</a></li>
               <li><a href="eventos.php" class="btn btn-5"><i class="bi bi-card-checklist"></i>Eventos</a></li>
               <li><a href="listaPedidos.php" class="btn btn-6"><i class="bi bi-backpack2"></i>Pedidos</a></li>
+              <li><a href="producto.php" class="btn btn-6"><i class="bi bi-card-list"></i></i>Productos</a></li>
             </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tablero.php">Reportes</a>
           </li>
           <li class="nav-item">
             <a class="nav-link salir" href="../login.php">Salir</a>
