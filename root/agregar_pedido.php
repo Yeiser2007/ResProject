@@ -100,7 +100,7 @@
         // Agregar el botón "Agregar" que enviará el formulario
         ?>
         <div class="btn-addsec">
-          <button type='submit' name='agregar' class='btn btn-primary btn-add'>Agregar</button>
+          <button type='submit' name='agregar' class='btn btn-primary btn-add'><i class="bi bi-cart-plus"></i></button>
         </div>
         <?php
         echo "</form>";
@@ -113,6 +113,8 @@
     </div>
   </div>
 </div>
+
+<?php include ('../templates/footer.php') ?>
 
 <div class="modal fade" id="eliminarOrdenModal" tabindex="-1" role="dialog" aria-labelledby="eliminarOrdenModalLabel"
   aria-hidden="true">
@@ -248,7 +250,12 @@
   </div>
 </div>
 
-<?php include ('../templates/footer.php') ?>
+
+
+
+
+
+
 <script>
   // Espera a que el DOM esté completamente cargado
   document.addEventListener("DOMContentLoaded", function() {

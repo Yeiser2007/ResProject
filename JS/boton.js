@@ -13,7 +13,7 @@ function obtenerHoraActual() {
     const boton = document.getElementById('botonHorario');
 
     // Horario de lunes a sábado: 8:30 a 12:59
-    if (diaSemana >= 1 && diaSemana <= 6 && ((hora === 8 && minutos >= 30)) && (hora < 13)) {
+    if (diaSemana >= 1 && diaSemana <= 6 && ((hora === 8 && minutos >= 30)) || (hora < 13)) {
       cambiarColoresAnimacion('#15098D', 'rgb(178, 184, 173)');
       boton.textContent = "Desayunos";
       boton.onclick = function() {
@@ -21,8 +21,8 @@ function obtenerHoraActual() {
       };
     } 
     // Horario de lunes a sábado: 13:00 a 17:20
-    else if (diaSemana >= 1 && diaSemana <= 6 && (hora > 13 && (hora === 17 && minutos <= 20))) {
-      cambiarColoresAnimacion('rgb(255, 195, 0);', 'rgb(178, 184, 173)');
+    else if (diaSemana >= 1 && diaSemana <= 6 && (hora > 13 && (hora < 18))) {
+      cambiarColoresAnimacion('#10A98C;', 'rgb(50, 255, 173)');
       boton.textContent = "Comida";
       boton.onclick = function() {
         location.href = '/html/comida.html';
